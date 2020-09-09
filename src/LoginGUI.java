@@ -1,3 +1,4 @@
+// Project utilizes the following components from the Java Swing GUI library.
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -9,6 +10,15 @@ import javax.swing.JButton;
 
 
 public class LoginGUI implements ActionListener {
+	
+	private static JLabel userLabel;
+	private static JTextField userText;
+	private static JLabel passwordLabel;
+	private static JPasswordField passwordText;
+	private static JButton button;
+	private static JLabel success;
+	
+	
 
 	public static void main(String[] args) {
 		
@@ -17,32 +27,38 @@ public class LoginGUI implements ActionListener {
 			
 		frame.setSize(400, 400);		// width, height of the window.
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// Sets the function of the 'X' to close the application.
-		frame.add(panel);
+		frame.add(panel);	// adds the container inside the window.
 		
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("Username:");
+		// Adds the user name label to the container, with adjusted sizing.
+		userLabel = new JLabel()
 		label.setBounds(10, 20, 80, 25);
 		panel.add(label);
 		
-		JTextField userText = new JTextField(20);
+		// Adds the text field next to the user name label, with adjusted sizing.
+		userText = new JTextField(20);
 		userText.setBounds(100, 20, 165, 25);
 		panel.add(userText);
 		
-		JLabel passwordLabel = new JLabel("Password: ");
+		// Adds the password label to the container, with adjusted sizing.
+		passwordLabel = new JLabel("Password: ");
 		passwordLabel.setBounds(10, 50, 80, 25);
 		panel.add(passwordLabel);
 		
-		JPasswordField passwordText = new JPasswordField();
+		// Adds the password text field next to the password label, with the adjusted sizing.
+		passwordText = new JPasswordField();
 		passwordText.setBounds(100, 50, 165, 25);
 		panel.add(passwordText);
 		
-		JButton button = new JButton("Login");
+		// Adds a Login button to the container, with an event listener and adjusted sizing.
+		button = new JButton("Login");
 		button.setBounds(10, 80, 80, 25);
 		button.addActionListener(new LoginGUI());
 		panel.add(button);
 		
-		JLabel success = new JLabel("");
+		
+		success = new JLabel("");
 		success.setBounds(10, 110, 300, 25);
 		panel.add(success);
 		
@@ -54,8 +70,7 @@ public class LoginGUI implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Button has been clicked");
+		
 		
 	}
 
