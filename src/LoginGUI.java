@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,24 +19,28 @@ public class LoginGUI implements ActionListener {
 	private static JPasswordField passwordText;
 	private static JButton button;
 	private static JLabel success;
+	private static JLabel failure;
 	
-	
-
 	public static void main(String[] args) {
 		
-		JFrame frame = new JFrame();	// new instance of a JFrame, which creates the window of the application.
-		JPanel panel = new JPanel();	// new instance of a JPanel, which is a container inside the JFrame window.
-			
-		frame.setSize(400, 400);		// width, height of the window.
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// Sets the function of the 'X' to close the application.
-		frame.add(panel);	// adds the container inside the window.
+		// new instance of a JFrame, which creates the window of the application.
+		JFrame frame = new JFrame();
 		
+		// new instance of a JPanel, which is a container inside the JFrame window.
+		JPanel panel = new JPanel();	
+			
+		// Adds the container with adjusted sizing to the window of the application.
+		frame.setSize(500, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);	
+		
+		// Neglects any formal layout of the container, thus enabling custom sizing.
 		panel.setLayout(null);
 		
 		// Adds the user name label to the container, with adjusted sizing.
-		userLabel = new JLabel()
-		label.setBounds(10, 20, 80, 25);
-		panel.add(label);
+		userLabel = new JLabel("Username: ");
+		userLabel.setBounds(10, 20, 80, 25);                                
+		panel.add(userLabel);
 		
 		// Adds the text field next to the user name label, with adjusted sizing.
 		userText = new JTextField(20);
@@ -57,21 +63,33 @@ public class LoginGUI implements ActionListener {
 		button.addActionListener(new LoginGUI());
 		panel.add(button);
 		
-		
+		// Adds a Success message if you entered the correct login information.
 		success = new JLabel("");
-		success.setBounds(10, 110, 300, 25);
+		success.setBounds(10, 110, 400, 25);
 		panel.add(success);
 		
+		// Adds a Failure message if you entered the incorrect login information.
+		failure = new JLabel("");
+		failure.setBounds(10, 110, 400, 25);
+		failure.setBackground(Color.red);
+		panel.add(failure);
 		
-		frame.setVisible(true);		// Makes the frame container appear on the screen when set to 'true'.
-		
-		
+		// Makes the frame container appear on the screen when set to 'true'.
+		frame.setVisible(true);		
+			
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String user = userText.getText();
+		String password = passwordText.getText();
 		
-		
+		if (user.equals("Alonso") && password.equals("Ilovepizza")) {
+			success.setText("Login successful");
+		}
+		else {
+			failure.setText("The Username or Password does not match our records.");
+		}
 	}
 
 }
